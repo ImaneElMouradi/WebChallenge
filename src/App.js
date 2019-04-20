@@ -3,11 +3,21 @@ import "./App.css";
 import Repository from "./components/repository";
 
 class App extends Component {
+  state = {
+    isLoading: false,
+    repositories: [],
+    error: null
+  };
+
   render() {
+    const { isLoading, repositories, error } = this.state;
+
     return (
-      <React.Fragment>
-        <Repository />
-      </React.Fragment>
+      <Repository
+        isLoading={isLoading}
+        repositories={repositories}
+        error={error}
+      />
     );
   }
 }
