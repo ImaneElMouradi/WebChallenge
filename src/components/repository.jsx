@@ -1,49 +1,64 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 class Repository extends Component {
   state = {};
+
   render() {
-    const { isLoading, repositories, error } = this.props;
+    const { isLoading, repos, error } = this.props;
+    console.log("repos", repos);
+    if (isLoading) {
+      return (
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      );
+    }
 
     return (
-      <React.Fragment>
-        {error ? <p>We have encountered an error</p> : null}
+      <Fragment>
+        {error && <p>We have encountered an error</p>}
 
-        {!isLoading ? (
-          <div className="container repo">
-            <div className="row">
-              <div className="col-md-2">
-                <img
-                  src="https://sciencespourtous.univ-lyon1.fr/files/2018/02/une-etiquette-sur-mon-profil-net.jpg"
-                  alt="Owner Avatar"
-                  width="150"
-                  height="150"
-                />
-              </div>
-              <div className="col-md-10">
-                <h1>Repository Name</h1>
-                <hr />
-                <p>
-                  Haec igitur lex in amicitia sanciatur, ut neque rogemus res
-                  turpes nec faciamus rogati. Turpis enim excusatio est et
-                  minime accipienda cum in ceteris peccatis, tum si quis contra
-                  rem publicam se amici causa fecisse fateatur. Etenim eo loco,
-                  Fanni et Scaevola, locati sumus ut nos longe prospicere
-                  oporteat futuros casus rei publicae. Deflexit iam aliquantum
-                  de spatio curriculoque consuetudo maiorum.
-                </p>
-                <div className="row">
-                  <p className="col-md-1">Nb Stars</p>
-                  <p className="col-md-1">Nb Issues</p>
-                  <p className="col-md-10">Time Interval by Owner Name</p>
+        {repos.map(repo => {
+          const {
+            id,
+            name,
+            owner,
+            description,
+            stargazers_count,
+            open_issues,
+            created_at
+          } = repo;
+
+          return (
+            <div className="container repo" key={id}>
+              <div className="row">
+                <div className="col-md-2">
+                  <img
+                    src={owner.avatar_url}
+                    alt={owner.login}
+                    width="150"
+                    height="150"
+                  />
+                </div>
+                <div className="col-md-10">
+                  <h3>{name}</h3>
+                  <hr />
+                  <p>{description}</p>
+                  <div className="row">
+                    <p className="col-md-1">{stargazers_count}</p>
+                    <p className="col-md-1">{open_issues}</p>
+                    <p className="col-md-10">
+                      {created_at} By {owner.login}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <h3 className="load">LOADING...</h3>
-        )}
-      </React.Fragment>
+          );
+        })}
+      </Fragment>
     );
   }
 }
