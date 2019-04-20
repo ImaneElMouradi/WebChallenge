@@ -1,26 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Repository from "./components/repository";
 
 class App extends Component {
+  state = {
+    isLoading: false,
+    repositories: [],
+    error: null
+  };
+
   render() {
+    const { isLoading, repositories, error } = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Repository
+        isLoading={isLoading}
+        repositories={repositories}
+        error={error}
+      />
     );
   }
 }

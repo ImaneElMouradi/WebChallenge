@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+.repo {
+  margin: 30px;
+  text-align: left;
+  background: rgb(236, 236, 236);
+}
+
+.load {
+  text-align: center;
+}
