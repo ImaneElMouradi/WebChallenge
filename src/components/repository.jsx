@@ -8,9 +8,9 @@ class Repository extends Component {
     console.log("repos", repos);
     if (isLoading) {
       return (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       );
@@ -47,9 +47,16 @@ class Repository extends Component {
                   <hr />
                   <p>{description}</p>
                   <div className="row">
-                    <p className="col-md-1">{stargazers_count}</p>
-                    <p className="col-md-1">{open_issues}</p>
-                    <p className="col-md-10">
+                    <p className="col-md-2">
+                      <i className="far fa-star mr-2" />
+                      {stargazers_count}
+                    </p>
+
+                    <p className="col-md-2">
+                      <i className="fas fa-exclamation-circle mr-2" />
+                      {open_issues}
+                    </p>
+                    <p className="col-md-8">
                       {created_at} By {owner.login}
                     </p>
                   </div>

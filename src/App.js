@@ -33,7 +33,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <h1>The most trending repositories in Github</h1>
+        <h1 className="title">The most trending repositories in Github</h1>
         <Repository isLoading={isLoading} repos={repos} error={error} />
       </Fragment>
     );
