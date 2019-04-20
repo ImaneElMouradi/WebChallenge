@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+.repo {
+  margin: 30px;
+  text-align: left;
+}

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Repository from "./components/repository";
 
 class App extends Component {
   render() {
-    return <p>test</p>;
+    return (
+      <React.Fragment>
+        <Repository />
+      </React.Fragment>
+    );
   }
 }
 
