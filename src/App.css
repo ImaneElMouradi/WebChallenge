@@ -34,8 +34,9 @@
 
 .repo {
   margin: 30px;
+  padding: 16px;
   text-align: left;
-  background: rgb(236, 236, 236);
+  background: #edf2f7;
 }
 
 .title {
