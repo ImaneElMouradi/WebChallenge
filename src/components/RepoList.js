@@ -1,16 +1,15 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 
 import Repository from "./Repository";
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroller";
+import { Waypoint } from "react-waypoint";
 
-class RepoList extends Component {
+class RepoList extends PureComponent {
   state = {
     isLoading: true,
     repos: [],
     error: null,
-    currentPage: 1,
-    pageSize: 10
+    currentPage: 1
   };
 
   urlApiGit = () => {
@@ -18,25 +17,26 @@ class RepoList extends Component {
       .subtract(30, "day")
       .format("YYYY-MM-DD");
 
-    return `https://api.github.com/search/repositories?q=created:>${date}&sort=stars&order=desc`;
+    return `https://api.github.com/search/repositories?q=created:>${date}&sort=stars&order=desc&page=${
+      this.state.currentPage
+    }`;
   };
 
   fetchRepos = () => {
+    this.setState({ isLoading: true });
+
     fetch(this.urlApiGit())
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          repos: data.items,
-          isLoading: false
-        });
+        this.setState(state => ({
+          repos: [...state.repos, ...data.items],
+          isLoading: false,
+          currentPage: state.currentPage + 1
+        }));
       })
 
       .catch(error => this.setState({ error, isLoading: false }));
   };
-
-  componentDidMount() {
-    this.fetchRepos();
-  }
 
   render() {
     const { isLoading, repos, error } = this.state;
@@ -45,6 +45,14 @@ class RepoList extends Component {
       <Fragment>
         <h1 className="title">The most trending repositories in Github</h1>
         <Repository isLoading={isLoading} repos={repos} error={error} />
+        <Waypoint onEnter={this.fetchRepos} />
+        {isLoading && (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
       </Fragment>
     );
   }

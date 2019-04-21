@@ -8,7 +8,8 @@
     "font-awesome": "^4.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-waypoint": "^9.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

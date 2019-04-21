@@ -1,28 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-class Repository extends Component {
-  state = {};
-
+class Repository extends PureComponent {
   formatDate = date => {
     return dayjs(date).fromNow();
   };
 
   render() {
-    const { isLoading, repos, error } = this.props;
-
-    if (isLoading) {
-      return (
-        <div className="d-flex justify-content-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </div>
-      );
-    }
+    const { repos, error } = this.props;
 
     return (
       <Fragment>
@@ -57,7 +45,7 @@ class Repository extends Component {
                   <p>{description}</p>
                   <div className="row">
                     <p className="col-md-2" data-toggle="tooltip" title="Stars">
-                      <i class="fas fa-star mr-2" />
+                      <i className="fas fa-star mr-2" />
                       {stargazers_count}
                     </p>
 
