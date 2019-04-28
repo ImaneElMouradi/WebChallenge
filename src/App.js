@@ -1,24 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+
 import "./App.css";
-import Repository from "./components/repository";
+import Repositories from "./components/Repositories";
 
-class App extends Component {
-  state = {
-    isLoading: false,
-    repositories: [],
-    error: null
-  };
-
+class App extends PureComponent {
   render() {
-    const { isLoading, repositories, error } = this.state;
-
-    return (
-      <Repository
-        isLoading={isLoading}
-        repositories={repositories}
-        error={error}
-      />
-    );
+    return <Repositories />;
   }
 }
 
