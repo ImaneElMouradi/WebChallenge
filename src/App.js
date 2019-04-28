@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import RepoList from "./components/RepoList";
+import Repositories from "./components/Repositories";
 
 class App extends Component {
   render() {
-    return <RepoList />;
+    return <Repositories />;
   }
 }
 
