@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import "./App.css";
 import Repositories from "./components/Repositories";
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return <Repositories />;
   }
