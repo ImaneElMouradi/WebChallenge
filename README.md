@@ -15,3 +15,6 @@ This is my implementation of the [United Remote Front End Challenge](https://git
 - [bootstrap](https://getbootstrap.com/)
 - [dayjs](https://github.com/iamkun/dayjs): used in order to manipulate dates in the repositories cards, it's very [lightweight](https://bundlephobia.com/result?p=dayjs@1.8.13) as opposed to [moment](https://bundlephobia.com/result?p=moment@2.24.0)
 - [waypoint](https://github.com/brigade/react-waypoint): used to create the infinite scroll
+
+### Deployment 
+https://git-trending-repos.netlify.com/
